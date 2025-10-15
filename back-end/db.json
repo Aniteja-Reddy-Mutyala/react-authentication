@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "id": "560f9e3b-e774-464c-835e-8a010d7c8cab",
+      "email": "abc@gmail.com",
+      "passwordHash": "$2b$10$VaDIdQEq2VQjT5JuRsXuP.mfI8jSDYkVEdxd3ii/fZPJCFM00P4ui",
+      "info": {
+        "hairColor": "",
+        "favouriteFood": "",
+        "bio": ""
+      },
+      "isVerified": false
+    }
+  ]
+}
