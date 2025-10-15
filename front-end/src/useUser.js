@@ -3,7 +3,7 @@ import { useToken } from "./useToken";
 
 export const useUser=()=>{
   const[token]=useToken();
-  const getPayloafFromToken=token=>{
+  const getPayloadFromToken=token=>{
     const encodedPayLoad=token.split('.')[1];
     return JSON.parse(atob(encodedPayLoad));
     
@@ -13,7 +13,7 @@ export const useUser=()=>{
       return null;
     }
     else{
-      return getPayloafFromToken(token)
+      return getPayloadFromToken(token)
     }
    })
    useEffect(()=>{
@@ -21,7 +21,7 @@ export const useUser=()=>{
         setUser(null);
       }
       else{
-        setUser(getPayloafFromToken(token))
+        setUser(getPayloadFromToken(token))
       }
    },[token])
    return user;

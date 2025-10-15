@@ -5,9 +5,9 @@
       "email": "abc@gmail.com",
       "passwordHash": "$2b$10$VaDIdQEq2VQjT5JuRsXuP.mfI8jSDYkVEdxd3ii/fZPJCFM00P4ui",
       "info": {
-        "hairColor": "",
-        "favouriteFood": "",
-        "bio": ""
+        "hairColor": "black",
+        "favoriteFood": "ok",
+        "bio": "Hi"
       },
       "isVerified": false
     },
@@ -17,7 +17,7 @@
       "passwordHash": "$2b$10$DPXfB9vuKpw5mWA/RHM9seo8BJkZTIaOOVwGyH0uATK2ufAairXoi",
       "info": {
         "hairColor": "",
-        "favouriteFood": "",
+        "favoriteFood": "",
         "bio": ""
       },
       "isVerified": false
@@ -28,7 +28,7 @@
       "passwordHash": "$2b$10$.DEJOFHGiBrb.f40HmJ.D.eUtsErMAP4i7Z4H8jdKw9Er7GjbBSB6",
       "info": {
         "hairColor": "",
-        "favouriteFood": "",
+        "favoriteFood": "",
         "bio": ""
       },
       "isVerified": false
@@ -39,7 +39,7 @@
       "passwordHash": "$2b$10$smAU3P88S6G.F8quRMWO0u9W2s6V2Y/GwYqIwklDJpSCYj9nG8vYi",
       "info": {
         "hairColor": "",
-        "favouriteFood": "",
+        "favoriteFood": "",
         "bio": ""
       },
       "isVerified": false

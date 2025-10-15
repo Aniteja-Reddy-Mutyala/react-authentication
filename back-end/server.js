@@ -18,7 +18,7 @@ app.post("/api/sign-up",async(req,res)=>{
    const id=uuidv4();
    const startingInfo={
     hairColor:'',
-    favouriteFood:'',
+    favoriteFood:'',
     bio:''
    }
    db.users.push({
