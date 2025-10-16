@@ -7,6 +7,9 @@ export const TokenProvider = ({ children }) => {
     return localStorage.getItem("token");
   });
   const setToken = (newToken) => {
+    if(!newToken){
+      return localStorage.removeItem('token')
+    }
     localStorage.setItem("token", newToken);
     setTokenInternal(newToken);
   };
