@@ -5,8 +5,8 @@
       "email": "abc@gmail.com",
       "passwordHash": "$2b$10$VaDIdQEq2VQjT5JuRsXuP.mfI8jSDYkVEdxd3ii/fZPJCFM00P4ui",
       "info": {
-        "hairColor": "black",
-        "favoriteFood": "ok",
+        "hairColor": "blue",
+        "favoriteFood": "Noodles",
         "bio": "Hi"
       },
       "isVerified": false

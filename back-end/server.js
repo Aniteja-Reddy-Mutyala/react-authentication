@@ -113,10 +113,10 @@ app.put("/api/users/:userId", async (req, res) => {
     saveDb();
     jwt.sign(
       {
-        id,
-        email,
-        info,
-        isVerified,
+        id:user.id,
+        email:user.email,
+        info:user.info,
+        isVerified:user.isVerified,
       },
       process.env.JWT_SECRET,
       {
