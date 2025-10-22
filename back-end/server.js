@@ -4,9 +4,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const { db, saveDb } = require("./db");
+const { sendEmail } = require("./sendEmail");
 const app = express();
 app.use(express.json());
-
+console.log("Api key is :",process.env.SENDGRID_API_KEY)
 // Endpoints go here
 app.post("/api/sign-up", async (req, res) => {
   const { email, password } = req.body;
@@ -16,6 +17,7 @@ app.post("/api/sign-up", async (req, res) => {
   }
   const passwordHash = await bcrypt.hash(password, 10);
   const id = uuidv4();
+  const verificationString=uuidv4();
   const startingInfo = {
     hairColor: "",
     favoriteFood: "",
@@ -27,8 +29,21 @@ app.post("/api/sign-up", async (req, res) => {
     passwordHash,
     info: startingInfo,
     isVerified: false,
+    verificationString,
   });
   saveDb();
+  try{
+sendEmail({
+  to: "aniteja.reddy@gmail.com",
+  from: "aniteja.reddy@gmail.com",
+  subject: "Please verify",
+  text: `To verify please click here:http://localhost:5173/verify-email/${verificationString}`,
+});
+  }
+  catch(e){
+    console.log(e)
+    res.sendStatus(500);
+  }
   jwt.sign(
     {
       id,

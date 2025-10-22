@@ -21,6 +21,18 @@
         "bio": "ok"
       },
       "isVerified": false
+    },
+    {
+      "id": "266f4b1f-b5ed-4c2e-9f3f-bf7755618655",
+      "email": "aniteja.reddy@gmail.com",
+      "passwordHash": "$2b$10$3dZy5xzeX.Pt5PXyUCYQ0ORoJ53gXnDhbHEpmuePeEbt9V0Mcjkaa",
+      "info": {
+        "hairColor": "",
+        "favoriteFood": "",
+        "bio": ""
+      },
+      "isVerified": false,
+      "verificationString": "e3695763-d6cd-4ab1-9f76-109796719877"
     }
   ]
 }
