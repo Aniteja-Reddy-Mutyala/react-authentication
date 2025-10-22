@@ -23,16 +23,16 @@
       "isVerified": false
     },
     {
-      "id": "db71ce1f-7f20-439a-9325-4e7654aa6392",
+      "id": "b1cdb1cd-7793-49c3-aa2d-ec1a25cfb7b0",
       "email": "aniteja.reddy@gmail.com",
-      "passwordHash": "$2b$10$Q4XZOlNEyHzR.m5x8DXPw.1sRm3Fl5Y4f8czKcWH0Atpg382E9u0a",
+      "passwordHash": "$2b$10$BQyosYNRpIT2TZhtYi/SWukk2wu6dQkqmXPiEtjTOO1JCXey1d4IS",
       "info": {
         "hairColor": "",
         "favoriteFood": "",
         "bio": ""
       },
       "isVerified": false,
-      "verificationString": "e18088bc-3bf3-46f6-91a3-c62eefafd34b"
+      "verificationString": "addc9584-75b0-48b3-9dcb-09a4ea597c0f"
     }
   ]
 }

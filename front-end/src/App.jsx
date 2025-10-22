@@ -6,6 +6,7 @@ import { UserInfoPage } from './UserInfoPage';
 import { PrivateRoute } from './PrivateRoute';
 import { useUser } from './useUser';
 import { PleaseVerifyEmailPage } from './PleaseVerifyEmailPage';
+import { EmailVerificationLandingPage } from './EmailVerificationLandingPage';
 
 function App() {
   const user=useUser();
@@ -17,6 +18,10 @@ function App() {
           <Route path="/log-in" element={<LogInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/please-verify" element={<PleaseVerifyEmailPage />} />
+          <Route
+            path="/verify-email/:verificationString"
+            element={<EmailVerificationLandingPage />}
+          />
           <Route
             element={<PrivateRoute redirectPath="/log-in" isAllowed={!!user} />}
           >
