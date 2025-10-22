@@ -33,7 +33,7 @@ app.post("/api/sign-up", async (req, res) => {
   });
   saveDb();
   try{
-sendEmail({
+ await sendEmail({
   to: "aniteja.reddy@gmail.com",
   from: "aniteja.reddy@gmail.com",
   subject: "Please verify",
@@ -146,5 +146,31 @@ app.put("/api/users/:userId", async (req, res) => {
     );
   });
 });
+app.put("/api/verify-email",async (req,res)=>{
+  const {verificationString}=req.body;
+  const user=db.users.find(user=>user.verificationString===verificationString)
+  if(!user){
+    return res.status(401).json({message:"Incorrect verification code"})
+  }
+ 
+    user.isVerified=true
+    const{id,email,info,isVerified}=user
+    jwt.sign(
+      {
+        id,
+        email,
+        info,
+        isVerified
+      },process.env.JWT_SECRET,{
+        expiresIn:"2d",
+      },
+      (err,token)=>{
+        if (err){
+          return res.sendStatus(500).json(err.message)
+        }
+        res.json({token})
+      }
+    )
+})
 
 app.listen(3000, () => console.log("Server running on port 3000"));

@@ -5,6 +5,7 @@ import { LogInPage } from './LogInPage';
 import { UserInfoPage } from './UserInfoPage';
 import { PrivateRoute } from './PrivateRoute';
 import { useUser } from './useUser';
+import { PleaseVerifyEmailPage } from './PleaseVerifyEmailPage';
 
 function App() {
   const user=useUser();
@@ -15,13 +16,16 @@ function App() {
         <Routes>
           <Route path="/log-in" element={<LogInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-         <Route element={ <PrivateRoute redirectPath="/log-in" isAllowed={!!user}/>}>
-          <Route  path="/" element={<UserInfoPage />}/>
-         </Route>
+          <Route path="/please-verify" element={<PleaseVerifyEmailPage />} />
+          <Route
+            element={<PrivateRoute redirectPath="/log-in" isAllowed={!!user} />}
+          >
+            <Route path="/" element={<UserInfoPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
 export default App
