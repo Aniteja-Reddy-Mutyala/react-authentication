@@ -7,6 +7,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { useUser } from './useUser';
 import { PleaseVerifyEmailPage } from './PleaseVerifyEmailPage';
 import { EmailVerificationLandingPage } from './EmailVerificationLandingPage';
+import { ForgotPasswordPage } from './ForgotPasswordPage';
 
 function App() {
   const user=useUser();
@@ -22,6 +23,7 @@ function App() {
             path="/verify-email/:verificationString"
             element={<EmailVerificationLandingPage />}
           />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route
             element={<PrivateRoute redirectPath="/log-in" isAllowed={!!user} />}
           >
