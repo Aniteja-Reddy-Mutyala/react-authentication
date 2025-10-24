@@ -31,8 +31,9 @@
         "favoriteFood": "",
         "bio": ""
       },
-      "isVerified": false,
-      "verificationString": "addc9584-75b0-48b3-9dcb-09a4ea597c0f"
+      "isVerified": true,
+      "verificationString": "addc9584-75b0-48b3-9dcb-09a4ea597c0f",
+      "googleId": "108332576582077143410"
     }
   ]
 }

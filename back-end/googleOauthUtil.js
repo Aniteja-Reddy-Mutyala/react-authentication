@@ -1,6 +1,6 @@
 require("dotenv").config();
 const {google}=require("googleapis");
-const {axios}=require('axios')
+const axios=require('axios')
 const {db,saveDb}=require('./db')
 const oauthClient=new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
@@ -21,8 +21,8 @@ const getGoogleOauthUrl=()=>{
 }
 const getGoogleUser=async(code)=>{
   const {tokens}=await oauthClient.getToken(code);
-  const response=await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.accessToken}`,
-    {headers:{Authorization:`Bearer ${tokens.id_token}`}},
+  const response=await axios.get(`https://www.googleapis.com/oauth2/v2/userinfo`,
+    {headers:{Authorization:`Bearer ${tokens.access_token}`}},
   )
   return response.data;
 }
@@ -50,4 +50,4 @@ const updateOrCreateUserFromOauth=async (oauthuserInfo)=>{
   saveDb();
   return newUser
 }
-module.exports={getGoogleOauthUrl,getGoogleUser},updateOrCreateUserFromOauth;
+module.exports={getGoogleOauthUrl,getGoogleUser,updateOrCreateUserFromOauth}

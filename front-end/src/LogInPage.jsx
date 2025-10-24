@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { replace, useNavigate } from 'react-router-dom';
+import { replace, useLocation, useNavigate } from 'react-router-dom';
 import { useToken } from './useToken';
 import axios from 'axios';
 
@@ -9,10 +9,20 @@ export const LogInPage = () => {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [googleOauthUrl,setGoogleOauthUrl]=useState('');
+  const location=useLocation();
+  const queryParams=new URLSearchParams(location.search);
+  const oauthToken=queryParams.get('token');
 
   // We'll use the history to navigate the user
   // programmatically later on (we're not using it yet)
   const navigate = useNavigate();
+  useEffect(()=>{
+    if(oauthToken){
+      setToken(oauthToken)
+      navigate('/',{replace:true})
+    }
+
+  },[oauthToken,setToken,navigate])
   useEffect(()=>{
     const loadOauthurl=async ()=>{
       try{

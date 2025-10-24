@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const { db, saveDb } = require("./db");
 const { sendEmail } = require("./sendEmail");
-const { getGoogleOauthUrl, getGoogleUser } = require("./googleOauthUtil");
+const { getGoogleOauthUrl, getGoogleUser, updateOrCreateUserFromOauth } = require("./googleOauthUtil");
 const app = express();
 app.use(express.json());
 console.log("Api key is :",process.env.SENDGRID_API_KEY)
@@ -217,10 +217,11 @@ app.get("/api/auth/google/url",(req,res)=>{
   
   res.status(200).json({url})
 })
-app.get("/api/auth/google.callback",async(req,res)=>{
+app.get("/auth/google/callback",async(req,res)=>{
   const {code}=req.query;
-  const ouathUserInfo=getGoogleUser(code);
-  const createdUser={};
+  console.log("inside google/callback function")
+  const ouathUserInfo=await getGoogleUser(code);
+  const createdUser= await updateOrCreateUserFromOauth(ouathUserInfo);
   const{id,isVerified,email,info}=createdUser
   jwt.sign({id,isVerified,email,info},process.env.JWT_SECRET,(err,token)=>{
     if(err){
