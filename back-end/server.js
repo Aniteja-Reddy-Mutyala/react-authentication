@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const { db, saveDb } = require("./db");
 const { sendEmail } = require("./sendEmail");
-const { getGoogleOauthUrl } = require("./googleOauthUtil");
+const { getGoogleOauthUrl, getGoogleUser } = require("./googleOauthUtil");
 const app = express();
 app.use(express.json());
 console.log("Api key is :",process.env.SENDGRID_API_KEY)
@@ -214,8 +214,20 @@ app.put("/api/users/:passwordResetCode/reset-password",async(req,res)=>{
 })
 app.get("/api/auth/google/url",(req,res)=>{
   const url=getGoogleOauthUrl();
-  console.log("Generated URL:", url);
-  console.log("Type of URL:", typeof url);
+  
   res.status(200).json({url})
+})
+app.get("/api/auth/google.callback",async(req,res)=>{
+  const {code}=req.query;
+  const ouathUserInfo=getGoogleUser(code);
+  const createdUser={};
+  const{id,isVerified,email,info}=createdUser
+  jwt.sign({id,isVerified,email,info},process.env.JWT_SECRET,(err,token)=>{
+    if(err){
+      return res.sendStatus(500)
+    }
+    res.redirect(`http://localhost:5173/log-in?token=${token}`);
+  })
+
 })
 app.listen(3000, () => console.log("Server running on port 3000"));

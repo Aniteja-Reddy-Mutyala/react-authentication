@@ -18,8 +18,7 @@ export const LogInPage = () => {
       try{
         const response= await axios.get("/api/auth/google/url")
         const {url}=response.data
-        console.log("Full response:", response.data);
-        console.log("URL extracted:", url);
+       
         setGoogleOauthUrl(url)
       }
       catch(e){
