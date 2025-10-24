@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const { db, saveDb } = require("./db");
 const { sendEmail } = require("./sendEmail");
+const { getGoogleOauthUrl } = require("./googleOauthUtil");
 const app = express();
 app.use(express.json());
 console.log("Api key is :",process.env.SENDGRID_API_KEY)
@@ -210,5 +211,11 @@ app.put("/api/users/:passwordResetCode/reset-password",async(req,res)=>{
    delete user.passwordResetCode;
    saveDb();
    res.sendStatus(200)
+})
+app.get("/api/auth/google/url",(req,res)=>{
+  const url=getGoogleOauthUrl();
+  console.log("Generated URL:", url);
+  console.log("Type of URL:", typeof url);
+  res.status(200).json({url})
 })
 app.listen(3000, () => console.log("Server running on port 3000"));

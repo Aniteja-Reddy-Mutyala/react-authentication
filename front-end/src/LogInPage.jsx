@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { replace, useNavigate } from 'react-router-dom';
 import { useToken } from './useToken';
 import axios from 'axios';
@@ -8,10 +8,26 @@ export const LogInPage = () => {
   const[token,setToken]=useToken();
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [googleOauthUrl,setGoogleOauthUrl]=useState('');
 
   // We'll use the history to navigate the user
   // programmatically later on (we're not using it yet)
   const navigate = useNavigate();
+  useEffect(()=>{
+    const loadOauthurl=async ()=>{
+      try{
+        const response= await axios.get("/api/auth/google/url")
+        const {url}=response.data
+        console.log("Full response:", response.data);
+        console.log("URL extracted:", url);
+        setGoogleOauthUrl(url)
+      }
+      catch(e){
+        console.log(e);
+      }
+    }
+    loadOauthurl();
+  },[])
 
   const onLogInClicked = async () => {
     const response=await axios.post('/api/log-in',{
@@ -42,6 +58,7 @@ export const LogInPage = () => {
         onClick={onLogInClicked}>Log In</button>
       <button onClick={() => navigate('/forgot-password')}>Forgot your password?</button>
       <button onClick={() => navigate('/sign-up')}>Don't have an account? Sign Up</button>
+      <button disabled={!googleOauthUrl} onClick={()=>{window.location.href=googleOauthUrl}}>Log in with google</button>
     </div>
   );
 }
