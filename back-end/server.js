@@ -172,5 +172,30 @@ app.put("/api/verify-email",async (req,res)=>{
       }
     )
 })
+app.put("/api/forgot-password/:email",async(req,res)=>{
+  const {email}=req.params
+  const user=db.users.find(user=>user.email===email)
+  if(!user){
+    return res.sendStatus(401).json({message:"Incorrect or invalid email id"})
+  }
+  const passwordResetCode=uuidv4();
+  user.passwordResetCode=passwordResetCode;
+  try{
+    await sendEmail({
+      to:email,
+      from:"aniteja.reddy@gmail.com",
+      subject:"Password reset",
+      text:`To reset password click this link :http://localhost:5173/reset-password/${passwordResetCode}`
+
+
+    })
+    res.sendStatus(200);
+  }catch(e){
+    console.log(e)
+    res.sendStatus(500);
+  }
+
+
+})
 
 app.listen(3000, () => console.log("Server running on port 3000"));
