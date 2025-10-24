@@ -111,11 +111,14 @@ app.put("/api/users/:userId", async (req, res) => {
     if (err) {
       return res.status(401).json({ message: "Unable to verify token" });
     }
-    const { id } = decoded;
+    const { id,isVerified } = decoded;
     if (id !== userId) {
       return res
         .status(403)
         .json({ message: "Not authorized to update this user" });
+    }
+    if(!isVerified){
+      return res.status(403).json({message:"Email must be verified"})
     }
     const { favoriteFood, hairColor, bio } = req.body;
     const updates = {
