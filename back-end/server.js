@@ -8,7 +8,7 @@ const { sendEmail } = require("./sendEmail");
 const { getGoogleOauthUrl, getGoogleUser, updateOrCreateUserFromOauth } = require("./googleOauthUtil");
 const app = express();
 app.use(express.json());
-console.log("Api key is :",process.env.SENDGRID_API_KEY)
+
 // Endpoints go here
 app.post("/api/sign-up", async (req, res) => {
   const { email, password } = req.body;
@@ -219,7 +219,7 @@ app.get("/api/auth/google/url",(req,res)=>{
 })
 app.get("/auth/google/callback",async(req,res)=>{
   const {code}=req.query;
-  console.log("inside google/callback function")
+  
   const ouathUserInfo=await getGoogleUser(code);
   const createdUser= await updateOrCreateUserFromOauth(ouathUserInfo);
   const{id,isVerified,email,info}=createdUser
