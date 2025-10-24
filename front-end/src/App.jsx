@@ -8,6 +8,7 @@ import { useUser } from './useUser';
 import { PleaseVerifyEmailPage } from './PleaseVerifyEmailPage';
 import { EmailVerificationLandingPage } from './EmailVerificationLandingPage';
 import { ForgotPasswordPage } from './ForgotPasswordPage';
+import { PasswordResetLandingPage } from './PasswordResetLandingPage';
 
 function App() {
   const user=useUser();
@@ -24,6 +25,7 @@ function App() {
             element={<EmailVerificationLandingPage />}
           />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password/:passwordResetCode" element={<PasswordResetLandingPage/>}/>
           <Route
             element={<PrivateRoute redirectPath="/log-in" isAllowed={!!user} />}
           >
